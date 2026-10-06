@@ -1,59 +1,160 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Poliklinik Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A web-based clinic management application developed using Laravel. The system provides a structured foundation for managing users with different roles, patient registration, authentication, dashboards, and relationships between clinic-related data.
 
-## About Laravel
+## Overview
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Poliklinik Management System is a Laravel-based web application developed as part of a Web Developer project.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+The application implements a multi-role authentication system for Admin, Doctor, and Patient users. It also uses Laravel Eloquent ORM to establish relationships between clinic data models and integrates a MySQL database as the primary data storage.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The project focuses on building a clean application structure using Laravel Blade components, Tailwind CSS, DaisyUI, middleware-based authorization, database migrations, seeders, and Eloquent relationships.
 
-## Learning Laravel
+## Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### Authentication & Authorization
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- User login and logout
+- Patient registration
+- Multi-role authentication
+- Role-based access control using middleware
+- Separate dashboards for Admin, Doctor, and Patient
+- Unauthorized role access protection
 
-## Laravel Sponsors
+### Patient Registration
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- Patient registration form
+- Patient identity information
+- Automatic Medical Record Number (`no_rm`) generation
+- Email uniqueness validation
+- Password hashing
+- Patient role assignment
 
-### Premium Partners
+### User Roles
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+The application currently supports three user roles:
 
-## Contributing
+| Role | Description |
+|------|-------------|
+| Admin | Provides access to the administrative dashboard |
+| Doctor | Provides access to the doctor dashboard and doctor-related functionality |
+| Patient | Provides access to the patient dashboard and registration-related functionality |
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Eloquent Relationships
 
-## Code of Conduct
+The application uses Laravel Eloquent ORM to define relationships between clinic models.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Implemented relationships include:
 
-## Security Vulnerabilities
+- `Poli` has many `User` records representing doctors
+- `User` belongs to `Poli`
+- `User` has many `JadwalPeriksa`
+- `JadwalPeriksa` belongs to `User` as a doctor
+- `JadwalPeriksa` has many `DaftarPoli`
+- `DaftarPoli` belongs to a patient
+- `DaftarPoli` belongs to `JadwalPeriksa`
+- `DaftarPoli` has many `Periksa`
+- `Periksa` belongs to `DaftarPoli`
+- `Periksa` has many `DetailPeriksa`
+- `DetailPeriksa` belongs to `Periksa`
+- `DetailPeriksa` belongs to `Obat`
+- `Obat` has many `DetailPeriksa`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Main Models
 
-## License
+The project contains the following main Eloquent models:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- `User`
+- `Poli`
+- `JadwalPeriksa`
+- `DaftarPoli`
+- `Periksa`
+- `Obat`
+- `DetailPeriksa`
+
+## Database Structure
+
+The application uses MySQL with the following main tables:
+
+- `users`
+- `poli`
+- `jadwal_periksa`
+- `daftar_poli`
+- `periksa`
+- `obat`
+- `detail_periksa`
+
+Database relationships are implemented using Laravel migrations, foreign keys, and Eloquent ORM relationships.
+
+## UI & Layout
+
+The frontend uses:
+
+- Laravel Blade
+- Tailwind CSS
+- DaisyUI
+- Font Awesome
+- Responsive layout components
+
+The application layout is organized into reusable components, including:
+
+- Header
+- Sidebar
+- Footer
+- Application layout
+- Guest authentication layout
+
+This approach helps reduce duplicated markup and follows the DRY (Don't Repeat Yourself) principle.
+
+## Technology Stack
+
+| Technology | Purpose |
+|------------|---------|
+| Laravel | Backend web framework |
+| PHP | Programming language |
+| MySQL | Relational database |
+| Eloquent ORM | Database interaction and relationships |
+| Blade | Server-side templating |
+| Tailwind CSS | Utility-first CSS framework |
+| DaisyUI | UI component library |
+| Vite | Frontend asset development |
+| JavaScript | Client-side functionality |
+
+## Project Structure
+
+```text
+poliklinik-app/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   └── Middleware/
+│   └── Models/
+│
+├── bootstrap/
+├── config/
+├── database/
+│   ├── migrations/
+│   └── seeders/
+│
+├── public/
+├── resources/
+│   └── views/
+│       ├── auth/
+│       ├── admin/
+│       ├── dokter/
+│       ├── pasien/
+│       └── components/
+│
+├── routes/
+│   └── web.php
+│
+├── .gitignore
+├── artisan
+├── composer.json
+├── package.json
+└── README.md
+
+
+
+Author
+Jonathan Naufal Farrel
