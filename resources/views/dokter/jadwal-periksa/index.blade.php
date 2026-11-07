@@ -8,7 +8,7 @@
         </h2>
 
         <a href="{{ route('jadwal-periksa.create') }}"
-           class="btn !bg-[#2563eb] !text-white hover:!bg-[#1d4ed8] border-none rounded-lg px-5"
+           class="btn !bg-[#2563eb] !text-white hover:!bg-[#1d4ed8] border-none rounded-lg px-5">
             <i class="fas fa-plus"></i>
             Tambah Jadwal Periksa
         </a>

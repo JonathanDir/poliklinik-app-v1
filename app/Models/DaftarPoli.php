@@ -11,9 +11,16 @@ class DaftarPoli extends Model
     protected $fillable = [
         'id_pasien',
         'id_jadwal',
+        'tanggal_periksa',
         'keluhan',
-        'no_antrian'
+        'no_antrian',
+        'status',
     ];
+
+    protected function casts(): array
+    {
+        return ['tanggal_periksa' => 'date'];
+    }
 
     public function pasien()
     {

@@ -17,10 +17,20 @@
                     <i class="fas fa-circle-xmark"></i>
                     <span>{{ $errors->first() }}</span>
                 </div>
+
             @endif
 
             <form action="{{ route('register') }}" method="POST">
                 @csrf
+
+                <div class="form-control mb-4">
+                    <label class="label pb-1"><span class="text-[0.82rem] font-semibold text-gray-700">NIM Mahasiswa</span></label>
+                    <label class="input input-bordered flex items-center gap-3 w-full rounded-[10px] border-slate-200 bg-slate-50">
+                        <i class="fas fa-graduation-cap text-slate-400 text-[0.82rem]"></i>
+                        <input type="text" name="nim" value="{{ old('nim') }}" placeholder="Masukkan NIM mahasiswa..." maxlength="30" class="grow bg-transparent text-slate-800 text-[0.88rem]" required>
+                    </label>
+                    @error('nim')<p class="mt-1 text-xs text-rose-600">{{ $message }}</p>@enderror
+                </div>
 
                 {{-- Nama Lengkap --}}
                 <div class="form-control mb-4">

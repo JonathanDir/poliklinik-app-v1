@@ -1,3 +1,9 @@
 <x-layouts.app title="Admin Dashboard">
-    <h1 class="m1-4">Halo Selamat Datang Admin</h1>
+    <div class="mb-7"><p class="mb-2 text-xs font-bold uppercase tracking-[.18em] text-indigo-600">Ringkasan klinik</p><h1 class="text-3xl font-extrabold tracking-tight text-slate-800">Dashboard Admin</h1><p class="mt-2 text-sm text-slate-500">Kelola tenaga medis, poli, obat, dan operasional layanan kampus.</p></div>
+    <div class="mb-7 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        @foreach([['Dokter', $jumlahDokter, 'fa-user-doctor', 'dokter.index'], ['Pasien', $jumlahPasien, 'fa-hospital-user', null], ['Poli', $jumlahPoli, 'fa-hospital', 'poli.index'], ['Manajemen Obat', $jumlahObat, 'fa-pills', 'obat.index']] as [$label, $jumlah, $icon, $routeName])
+        <a @if($routeName) href="{{ route($routeName) }}" @endif class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"><span class="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700"><i class="fas {{ $icon }}"></i></span><p class="mt-4 text-sm font-semibold text-slate-500">{{ $label }}</p><p class="mt-1 text-3xl font-extrabold text-slate-800">{{ $jumlah }}</p><p class="mt-2 text-xs font-bold text-indigo-700">Kelola {{ strtolower($label) }} <i class="fas fa-arrow-right ml-1"></i></p></a>
+        @endforeach
+    </div>
+    <section class="rounded-2xl border border-indigo-100 bg-gradient-to-br from-white to-indigo-50 p-6"><h2 class="font-bold text-slate-800">Operasional klinik kampus</h2><p class="mt-2 max-w-3xl text-sm leading-6 text-slate-600">Dokter mengatur jadwal praktik dari akunnya. Mahasiswa mendaftar menggunakan NIM dan memilih sesi yang masih tersedia. Antrean dan hasil pemeriksaan dikelola melalui akun dokter.</p><a href="{{ route('dokter.index') }}" class="mt-4 inline-flex items-center gap-2 text-sm font-bold text-indigo-700 hover:text-indigo-900"><i class="fas fa-user-doctor"></i> Buka data dokter</a></section>
 </x-layouts.app>

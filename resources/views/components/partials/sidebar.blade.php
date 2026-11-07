@@ -64,6 +64,17 @@
                     Manajemen Obat
                 </a>
 
+                <a href="{{ route('poli.index') }}"
+                    class="{{ $baseLink }} {{ request()->routeIs('poli.*') ? $active : $inactive }}">
+                    <i class="fas fa-hospital w-4 text-center"></i>
+                    Manajemen Poli
+                </a>
+                <a href="{{ route('dokter.index') }}"
+                    class="{{ $baseLink }} {{ request()->routeIs('dokter.index', 'dokter.create', 'dokter.edit', 'dokter.store', 'dokter.update', 'dokter.destroy') ? $active : $inactive }}">
+                    <i class="fas fa-user-doctor w-4 text-center"></i>
+                    Data Dokter
+                </a>
+
             </div>
         @endif
 
@@ -81,6 +92,11 @@
                     class="{{ $baseLink }} {{ request()->routeIs('pasien.dashboard') ? $active : $inactive }}">
                     <i class="fas fa-house-medical w-4 text-center"></i>
                     Dashboard Pasien
+                </a>
+                <a href="{{ route('pendaftaran.index') }}"
+                    class="{{ $baseLink }} {{ request()->routeIs('pendaftaran.*') ? $active : $inactive }}">
+                    <i class="fas fa-calendar-plus w-4 text-center"></i>
+                    Daftar Periksa
                 </a>
 
             </div>
@@ -107,6 +123,11 @@
                     class="{{ $baseLink }} {{ request()->routeIs('jadwal-periksa.*') ? $active : $inactive }}">
                     <i class="fas fa-calendar-check w-4 text-center"></i>
                     Jadwal Periksa
+                </a>
+                <a href="{{ route('dokter.antrian') }}"
+                    class="{{ $baseLink }} {{ request()->routeIs('dokter.antrian*') ? $active : $inactive }}">
+                    <i class="fas fa-clipboard-list w-4 text-center"></i>
+                    Antrian Pasien
                 </a>
 
             </div>

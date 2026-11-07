@@ -45,8 +45,9 @@ class AuthController extends Controller
         'alamat' => 'required|string',
         'no_ktp' => 'required|numeric|unique:users,no_ktp',
         'no_hp' => 'required|numeric',
+        'nim' => 'required|string|max:30|unique:users,nim',
         'email' => 'required|email|unique:users,email',
-        'password' => 'required|min:6'
+        'password' => 'required|min:8|confirmed'
     ]);
 
     $lastPasien = User::where('role', 'pasien')->orderBy('id', 'desc')->first();
@@ -59,6 +60,7 @@ class AuthController extends Controller
         'no_ktp' => $request->no_ktp,
         'no_hp' => $request->no_hp,
         'no_rm' => $no_rm,
+        'nim' => $request->nim,
         'role' => 'pasien',
         'email' => $request->email,
         'password' => Hash::make($request->password),

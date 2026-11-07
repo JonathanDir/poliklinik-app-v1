@@ -2,23 +2,30 @@
 <x-layouts.app title="Data Obat">
 
     {{-- Header --}}
-    <div class="flex items-center justify-between mb-6">
-        <h2 class="text-2xl font-bold text-slate-800">
-            Data Obat
-        </h2>
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-6">
+        <div>
+            <p class="mb-2 text-xs font-bold uppercase tracking-[.18em] text-indigo-600">Administrasi klinik</p>
+            <h2 class="text-3xl font-extrabold tracking-tight text-slate-800">Manajemen Obat</h2>
+            <p class="mt-2 text-sm text-slate-500">Kelola katalog obat, kemasan, dan harga yang digunakan saat pemeriksaan.</p>
+            <p class="mt-1 text-xs text-slate-400">Harga tercatat per kemasan dan dapat disesuaikan dengan harga pemasok klinik.</p>
+        </div>
 
         <a href="{{ route('obat.create') }}" class="inline-flex items-center gap-2 px-5 py-2.5 
                   bg-primary hover:bg-primary/90 
                   text-white text-sm font-semibold 
                   rounded-xl transition">
             <i class="fas fa-plus text-xs"></i>
-            Tambah Obat
+            Tambah Data Obat
         </a>
     </div>
 
     {{-- Card --}}
     <div class="card bg-base-100 shadow-md rounded-2 border">
         <div class="card-body p-0">
+            <div class="flex items-center justify-between border-b border-slate-100 px-5 py-4 sm:px-6">
+                <div><h3 class="font-bold text-slate-800">Katalog obat</h3><p class="mt-1 text-xs text-slate-500">{{ $obats->count() }} jenis obat terdaftar</p></div>
+                <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-bold text-indigo-700"><i class="fas fa-pills mr-1"></i> Farmasi</span>
+            </div>
 
             <div class="overflow-x-auto">
                 <table class="table w-full">

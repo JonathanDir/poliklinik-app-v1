@@ -30,9 +30,7 @@ class ObatController extends Controller
 
         Obat::create($validated);
 
-        return redirect()->route('obat.index')
-            ->with('message', 'Data obat berhasil ditambahkan')
-            ->with('type', 'success');
+        return redirect()->route('obat.index')->with('success', 'Data obat berhasil ditambahkan.');
     }
 
     public function edit(string $id)
@@ -53,18 +51,19 @@ class ObatController extends Controller
         $obat = Obat::findOrFail($id);
         $obat->update($validated);
 
-        return redirect()->route('obat.index')
-            ->with('message', 'Data obat berhasil diperbarui')
-            ->with('type', 'success');
+        return redirect()->route('obat.index')->with('success', 'Data obat berhasil diperbarui.');
     }
 
     public function destroy(string $id)
     {
         $obat = Obat::findOrFail($id);
+
+        if ($obat->detailPeriksas()->exists()) {
+            return back()->with('error', 'Obat ini sudah tercatat pada riwayat pemeriksaan sehingga tidak dapat dihapus.');
+        }
+
         $obat->delete();
 
-        return redirect()->route('obat.index')
-            ->with('message', 'Data obat berhasil dihapus')
-            ->with('type', 'success');
+        return redirect()->route('obat.index')->with('success', 'Data obat berhasil dihapus.');
     }
 }
